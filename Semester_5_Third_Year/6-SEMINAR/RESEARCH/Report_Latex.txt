@@ -1,0 +1,471 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{microtype}
+\usepackage{siunitx}
+\usepackage[justification=centering,font=small,labelfont=bf]{caption}
+\usepackage{tikz}
+\usepackage[absolute,overlay]{textpos}
+\usetikzlibrary{calc}
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+\setlength{\parindent}{0pt}
+\graphicspath{ {images/} }
+\renewcommand*\contentsname{Table of Contents}
+\numberwithin{equation}{section}
+\begin{document}
+\onehalfspacing
+\begin{titlepage}
+\thispagestyle{plain}
+\begin{tikzpicture}
+[remember picture,overlay] \draw[line width=4pt] ($(current page.north west) + (1in,-1in)$) rectangle ($(current page.south east) + (-1in,+1in)$);
+\end{tikzpicture}
+\vspace*{0.5cm}
+
+\qquad \large{\textbf{A seminar report on:}}
+
+\bigskip
+\bigskip
+
+\begin{center}
+    {\fontsize{20}{20}\selectfont \textbf{"FULLY HOMOMORPHIC ENCRYPTION"}}
+\end{center}
+
+\bigskip
+\bigskip
+
+\quad \textbf{Prepared by \hspace{1 mm} : \underline{Shubham Agarwal}}
+
+\bigskip
+\bigskip
+\quad \textbf{Roll. No  \quad \quad \hspace{1.1mm}: \underline{U19CS046}}
+
+\bigskip
+\bigskip
+\quad \textbf{Class \qquad  \quad \hspace{1.2mm} : \underline{B.Tech-III Computer Science and Engineering 5th}}
+
+\bigskip
+\textbf{\hspace{38mm} \underline{Semester}}
+
+\bigskip
+\bigskip
+\quad \textbf{Year \hspace{17.5mm} : \underline{2021-22}}
+
+\bigskip
+\bigskip
+\quad \textbf{Guided by \hspace{5mm}  : \underline{Prof. Sachi Shah}}
+
+\bigskip
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=1.2]{Svnit_logo.JPG}
+\end{figure}
+
+\begin{center}
+    \textbf{Department of Computer Engineering}
+    
+    \bigskip
+    \textbf{Sardar Vallabhbhai National Institute of Technology,}
+
+    \bigskip
+    \textbf{Surat -395007 (Gujarat), India}
+\end{center}
+\end{titlepage}
+\newpage
+\begin{titlepage}
+    \begin{tikzpicture}
+    [remember picture,overlay] \draw[line width=4pt] ($(current page.north west) + (1in,-1in)$) rectangle ($(current page.south east) + (-1in,+1in)$);
+    \end{tikzpicture}
+    \vspace{0.5mm}
+    
+    
+    \begin{figure}[!ht]
+    \hspace{2mm}
+    \includegraphics[scale=0.6]{Svnit_logo.JPG}
+    \end{figure}
+    \begin{textblock*}{12cm}(6cm,4cm) % {block width} (coords) 
+    {\fontsize{15}{16}\selectfont \textbf{Sardar Vallabhbhai National Institute of Technology,}}
+    \begin{center}
+        {\fontsize{14}{16}\selectfont \textbf{Surat -395007 (Gujarat), India}}
+    \end{center}
+    \end{textblock*}
+    
+    \bigskip
+    \begin{center}
+        {\fontsize{20}{24}\selectfont \textbf{\underline{CERTIFICATE}}}
+    \end{center}
+    
+    \bigskip
+    {\fontsize{15}{18}\selectfont \hspace{8mm} This is to certify that the seminar report entitled \textbf{\underline{Object Detection}}}
+    
+    \vspace{0.5mm}
+    \medskip
+    {\fontsize{15}{18}\selectfont \hspace{2mm} is prepared and presented by \textbf{\underline{Mr. Shubham Agarwal}} bearing Roll No. :}
+    
+    \vspace{0.5mm}
+    \medskip
+    {\fontsize{15}{18}\selectfont \hspace{2mm} \textbf{\underline{U19CS046}} 3rd Year of \textbf{B.Tech(Computer Science and Engineering)}}
+
+    \vspace{0.5mm}
+    \medskip
+    {\fontsize{15}{18}\selectfont \hspace{2mm} and his work is satisfactory.}
+    
+    \vspace{115mm}
+    {\fontsize{16}{18}\selectfont \hspace{20mm} \textbf{GUIDE} \hspace{35mm}
+    \textbf{JURY} \hspace{30mm} \textbf{HOD}}
+    
+    \vspace{8mm}
+    {\fontsize{16}{18}\selectfont \hspace{10mm} \textbf{(Prof. Sachi Shah)} \hspace{65mm} \textbf{COED}}
+    \thispagestyle{plain}
+    \addtocounter{page}{1}
+\end{titlepage}
+\setcounter{page}{3}
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+\section*{List of Abbreviations}
+
+\textbf{AI} Artificial intelligence
+
+\textbf{FHE} Fully Homomorphic Encryption
+
+\textbf{IoT} Internet of Things
+
+\textbf{msb} most significant bit
+
+\textbf{PHE} Partially Homomorphic Encryption
+
+\textbf{PII} Personally Identifiable Information
+
+\textbf{SWHE} Somewhat Homomorphic Encryption
+
+\pagebreak
+\begin{abstract}
+In the technical world, cloud computing, the internet of things (IoT), and blockchain technology have become the most powerful innovation. They pose a significant risk of information leakage, as this information can be targeted by cloud insiders or hackers, resulting in the computerization of privacy. There is a crucial need to create a solution that ensures privacy even if cloud security is breached. There is a solution for cryptography. Fully Homomorphic Encryption is an encryption system that allows any third party or provider to compute encrypted data and produce accurate results without revealing any information about the original material. Gentry [3] created the first such scheme in 2009, which was a big breakthrough, and since then, improvements have been made to the scheme to make it faster and more practical to employ in real-world applications. In this research, we look at what fully homomorphic encryption is and the significant issues that come with implementing it.
+\paragraph{Keyword}
+Keywords – Cryptography, cloud computing, Fully Homomorphic Encryption, blockchain, IoT
+\end{abstract}
+\pagebreak
+\section{Introduction}
+
+\subsection{OUTSOURCED COMPUTING}
+\qquad In this era, information technology has made mobile phones, personal computers, and the internet necessary. Because these devices have low computing and storage capacity, they cannot use them for application servers that demand a large amount of processing and storage capacity and fault tolerance, which cheap commodity hardware cannot supply. It cannot be used to support current applications that are based on AI and Machine Learning. This type of need necessitates the deployment of expensive hardware and software infrastructure, which is prohibitively expensive for ordinary people and even small businesses. This condition opens up a new business opportunity to build an infrastructure that can serve all of these users simply by moving computation to high-end computer resources, a process known as outsourcing computation.
+
+\qquad Outsource computing is defined as a scheme in which a party P provides data D to a party Q, who processes the data according to P's needs, produces results, and gives them back to P or another party. Outsourced computing problems may be solved in a variety of ways, but the most prevalent is the "Cloud." For network users, the cloud delivers extensive, flexible, and on-demand distant storage and processing capabilities. Data science is now being used by big apps to better serve their customers, which has made cloud so popular that all major technology companies across the world, including Microsoft, Amazon, IBM, and Google, are now in the cloud industry.
+
+\qquad Most cloud-based applications require data owners to send private and sensitive data to the cloud for processing over the internet or through any other medium. This raises concerns about the security of outsourcing computation schemes because users lose control of their data when it is sent to the cloud. There is always the risk of data leakage from the cloud, which can create insecurity for businesses and individuals. If sensitive data such as medical records or financial statements is compromised, a firm can lose important data and insights that can damage their business. For an individual, if sensitive data such as medical records or financial statements is hacked, it can pose severe privacy problems.
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.8]{Cloud Computing.jpg}
+\caption{\footnotesize \textbf{Cloud Computing}}
+\end{figure}
+\qquad Recent studies in cloud security have presented security approaches that are utilized in network security, such as storing data in encrypted form, which maintains secrecy even if there is a security breach on the cloud and an adversary can access stored data. However, when a user wishes to do a computation on the stored data, the data must first be decrypted in order to obtain acceptable results, and all computations must be performed on private data.The challenge of secure computing can be solved by providing computation providers with a computation scheme that allows them to calculate on encrypted data without decryption while yet producing the same output (encrypted) as if they were processing plain data. 
+
+Homomorphic encryption methods are a type of encryption that allows users to conduct outsourced computing without having to worry about trust.	
+\subsection{Fundamentals of Cryptography [7]}
+\qquad The security of encryption methods should not be dependent on code obfuscation but rather on the confidentiality of the key used in the encryption process. There are two types of en-cryption techniques: symmetric encryption schemes and asymmetric encryption methods. In the following sections, we will quickly go through each of these plans.
+\subsubsection{Symmetric encryption schemes}
+\qquad	Before beginning any secure communication session, the sender and receiver agree on the key they will use in these schemes. As a result, such methods cannot be used directly by two people who have never met previously. This also indicates that we must have a separate key for each individual in order to connect with them. Because these schemes require a high number of keys, key creation and administration become substantially more complicated processes. However, symmetric systems have the benefit of being extremely fast, and they are employed in situations where speed of execution is critical.
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.8]{Symmetric Encryption.jpg}
+\caption{\footnotesize \textbf{Symmetric Encryption}}
+\end{figure}
+\subsubsection{Asymmetric encryption schemes}
+\qquad	Every participant in these systems has a pair of keys, one private and one public. While person's private key is known exclusively to her, the public key of each member is not confidential in the group. So schemes are more secure than their symmetric equivalents, and they do not require previous agreement on a shared key between the communicating parties before initiating a communication session. 
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.8]{Asymmetric Encryption.png}
+\caption{\footnotesize \textbf{Asymmetric Encryption}}
+\end{figure}
+\subsection{Homomorphic Encryption}
+\qquad Before we go into homomorphic encryption, it's important to understand what "encryption" is. Encryption is like	 converting data from its original plaintext form to an encoded version known as ciphertext using secure keys held by only authorized parties. Decryption is the process of selecting keys in such a way that they may be decrypted. To utilize encryption and decryption, both parties must know the encryption method and the keys that will be used for encryption and decryption, which must be produced prior to encryption. An encryption method is made up of a trio of encryption, decryption, and key generation algorithms.
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.8]{Homomorphic Encryption.jpg}
+\caption{\footnotesize \textbf{Homomorphic Encryption}}
+\end{figure}
+\qquad Homomorphic encryption is considered an Encryption that allows you to compute over encrypted material without having to decode it. Consider a data object $X$ that has Encryption $Encr(X)$ and a function $f()$ that has to be evaluated on $X$ in a homomorphic scheme that contains an equivalent function $f'$,.This ensures that $f'(Encr(X)) = Encr(f(X))$.
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=1.2]{Types of homomorphic Encryption.jpg}
+\caption{\footnotesize \textbf{Types Of Homomorphic Encryption}}
+\end{figure}
+
+Homomorphic encryption systems are divided into three categories based on the quantity and fundamental functions they support: partly, somewhat, and completely homomorphic encryption methods.
+\pagebreak
+\subsubsection{Partially Homomorphic Encryption}
+\qquad Homomorphic multiplication or homomorphic addition are supported by partially homomorphic encryption systems. Multiplicative homomorphism exists in the RSA and ElGamal cryptosystems. Additive homomorphism is a well-known paillier cryptosystem. PHE systems can be beneficial in situations when just addition or multiplication is required, such as safe electronic voting, which only requires homomorphic addition. PHE methods now in use are unable to calculate the whole set of 6 Boolean operators, i.e., the NAND operator. Instead, they use a commutative ring that contains the Boolean set 0, 1 to enable either addition or multiplication. The NAND operator, on the other hand, necessitates both homomorphic addition and multiplication, as seen in the following expression [4].
+\begin{equation} \label{1.1}
+x_{1}NANDx_{2}=1-x_{1}.x_{2},x_{1},x_{2}\epsilon \left \{ 0,1 \right \}
+\end{equation}     
+As a result, PHE schemes' usefulness is severely restricted.
+
+\subsubsection{Somewhat Homomorphic Encryption}
+\qquad Somewhat homomorphic encryption is a homomorphic technique that permits a limited number of homomorphic multiplication and addition to be computed (SHE). The so-called "Poly-Cracker" schemes, released in the early 1990s, were the first encryption systems that might be deemed SHE. These approaches are based on the multivariate ring ideal remainder issue. Encryption is accomplished here by masking plaintext with a random element of a publicly known ideal. Regrettably, virtually all of these programs lack security assurances.
+
+\subsubsection{Fully Homomorphic Encryption}
+\qquad A homomorphic encryption technique with no restrictions on the types of functions that may be used, the number of assessments that can be performed, or the depth of processing. On the encrypted data, a completely homomorphic method can assess a circuit of any complexity. Gentry's [3] FHE system, proposed in 2009, was the first big advance for this type of method. We'll go over everything in depth in the following chapter.
+\subsection{Applications}
+\qquad Homomorphic Encryption methods are more powerful than traditional encryption standards because they allow you to compute functions on encrypted data, allowing you to use any outsourcing computing solution without worrying about data security, which is a major benefit. With the increasing use of cloud-based solutions in real-world applications, homomorphic encryption schemes are becoming increasingly popular as a way to make clouds more safe and trustworthy.
+\subsubsection{Secure Cloud Processing}
+\qquad One of the finest use cases for FHE is secure data processing in clouds, and this is the use case that has driven research in this subject since the beginning. FHE methods can be used to process encrypted data in encrypted form without actually utilizing the data, ensuring privacy. [5]
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=20]{Secure Cloud Processing.jpg}
+\caption{\footnotesize \textbf{Secure Cloud Processing}}
+\end{figure}
+\subsubsection{Encrypted Search}
+\qquad Searching for encrypted data is one of the most important applications of homomorphic encryption because it protects users' privacy while browsing. When searching in encrypted mode, a third party cannot keep track of the user's browsing history, which could be used for advertising or malicious purposes. Users encrypt their queries using their public key in the encrypted search [6] method, and the query is performed on the encrypted data by the server, making the user's browsing history untraceable. Meng Shen introduced the SWHE technique, which encrypts graphs and allows for the calculation of Shortest Distance Queries across them.
+\subsubsection{Medical Application}
+\qquad Medical data is very confidential data, and it is frequently the case that an individual does not want to disclose this information. Many countries have placed limits on the use of healthcare data since it falls under the PII category; however, there are a variety of use cases in the healthcare industry that require medical records to train machine learning models in order to build next-generation healthcare solutions. This type of data may be utilized for research purposes utilizing the FHE technique since encrypted data does not represent a security risk to individuals, but it is valuable to researchers who can do computations on encrypted data.
+\subsubsection{Secure E-voting}
+\qquad Homomorphic encryption may be used to create a secure electronic voting system in which all ballots with user selections are encrypted, and the results are calculated using homomorphic processes. It is difficult to obtain the plaintext of an individual ballot, which aids in the privacy of an individual voter.
+\subsubsection{Anti Phishing}
+\qquad Phishing attacks attempt to obtain data from users by simulating their experience in order to convince them that they are submitting credentials to a legitimate entity, which is then used for harmful reasons. By demanding encrypted credentials from users, which can be readily validated via homomorphic encryption, homomorphic methods may be utilized to thwart fishing attacks. Even if a person offers his or her credentials to an opponent, in this case, it will be useless to him. There will be more and more uses of homomorphic encryption in the future as self-awareness of privacy protection grows, and homomorphic encryption develops.
+\subsection{Related work}
+\qquad Gentry [3] presented the first fully homomorphic encryption method in 2009, which was the first major advance in the realm of FHE research. It was built on the well-known ideal lattices issue. Despite the fact that it had a significant influence on the area of FHE, It was computationally costly, resulting in low efficiency. [2] Following the Gentry's scheme, researchers became very interested in lattice-based cryptosystems, and many FHE schemes were introduced to improve the efficiency of the Gentry's scheme. However, most of them had a complex key generation scheme, which, combined with the large size of the key and inline, rendered these schemes impractical for real-world use.
+
+\qquad Following Gentry's approach in 2010, Dijk proposed an integer-based FHE technique. This scheme only works with integers; all ciphertext and keys are integers, making it much easier to understand and implement than previous FHE schemes based on ideal lattices. However, this scheme suffers from the problem of large ciphertext and key sizes, making it unsuitable for real-world applications.
+
+\qquad The first LWE-based FHE scheme (BV) was introduced by Brakerski and Vaikuntanathan in 2011. In homomorphic multiplications, the re-linearization approach was introduced to regulate the ciphertext dimension. Furthermore, the dimension-modulus reduction approach was presented as a novel strategy for reducing the decryption algorithm in order to make the system bootstrap able and completely homomorphic.
+
+\qquad A leveled FHE method was presented by Brakerski, Gentry, and Vaikuntanathan in 2012. (BGV). This method was built on re-linearization and dimension-modulus reduction techniques that were enhanced for key switching and modulus switching procedures in the BGV scheme to give it more control over the ciphertext's dimensions and noise level.
+Gentry, Sahai, and Waters proposed the GSW system in 2013. Approximate eigenvectors of matrices were used in this method. Every calculation in the GSW scheme is conducted as a matrix operation. The ciphertext and key are represented as matrices, and all homomorphic operations are performed as matrix operations. Due to matrix operations, the ciphertext size is nearly always limited, which eliminates the need for key flipping. The flatten approach may be used to make the GSW scheme scale-invariant, which also overcomes the problem of modulus switching. This system overcomes all of the key problems of its predecessor. However, the matrix operations are computationally costly, making this scheme a computational bottleneck.
+
+\qquad Ducas and Miccianico proposed the DM method, which is based on homomorphic NOT and NAND gates that may be utilized to construct any digital circuit. All homomorphic operations in the DM scheme are ciphertext vector additions, which are very easy to compute and make this scheme very simple to implement. The issue with scheme is that ciphertext must be refreshed after each homomorphic operation, which increases the amount of computation required in comparison to plain data evaluation and becomes a bottleneck for this scheme. Other research on the design of LWE-based FHE schemes focuses on increasing the efficiency of the bootstrapping process and optimizing it.
+\pagebreak
+\section{Fully Homomorphic Encryption Schemes }
+\qquad Genetry[3] released his crucial work in 2009, presenting a novel SHE method based on the ideal coset problem over ideal lattices. This is the first fully homomorphic encryption method ever devised. We'll go over Gentry's First scheme in the next part, as well as several novel homomorphic encryption techniques.
+\subsection{Gentry’s Homomorphic Encryption Scheme}
+\qquad Gentry's initial suggested design was based on the notion of using bootstrapping to overcome the problems created by noise in homomorphic evaluation high-depth circuits. We will not cover the exact mathematics involved in Gentry's approach due to the incredible complexity of Gentry's scheme and Lattice-based encryption. We'll go through the general issues with homomorphic encryptions before looking at how this approach addresses them.
+
+\subsubsection{Noise problem}
+\qquad Noise is a tiny random number that is introduced to a ciphertext during the encryption process to assure the cryptosystem's semantic security. 
+
+Consider a basic encryption system with a secret $t$ and encryption - decryption as follows to see the issues created by additional noise in homomorphic operations.
+\begin{equation} \label{2.1}
+Encr(X) = X.t+ e
+\end{equation}  
+\begin{equation} \label{2.2}
+Decr\left ( X \right )=\left ( X -mod\left ( X,t \right )\right )
+\end{equation} 
+\qquad Consider the following two ciphertexts, C1 and C2, which were both produced using the same technique. When these two ciphertexts are added together, the result is 
+\begin{equation} \label{2.3}
+C = C1+C2
+\end{equation}  
+\begin{equation} \label{2.3}
+C=X_{1}.t+e_{1}+X_{2} .t+e_{2}
+\end{equation}  
+\begin{equation} \label{2.3}
+C=(X_{1}+X_{2}).t+(e_{1}+e_{2})
+\end{equation} 
+\qquad If $e_{1}+e_{2}$   is less than $t$, the decryption of C will yield a result identical to $X_{1}+ X_{2}$. Otherwise, it will yield an incorrect result. Multiplication can exceed this limit of the permissible amount of noise in a few rounds of successive computation on a single ciphertext, resulting in inaccurate output. Multiplication is a very simple operation in real-world applications that often requires multiple rounds of complex processing, including exponentiation. This restriction on the quantity of noise imposes a limit on the number of times a ciphertext may be computed without losing its accuracy.
+\subsubsection{ Levelled fully Homomorphic Scheme}
+\qquad Consider an encryption method that can evaluate d consecutive homomorphic operations on ciphertext without introducing noise; such techniques are referred to as Levelled Homomorphic Encryption.
+
+\qquad The main disadvantage of such a scheme is that functions with depth within a predefined depth range can be evaluated accurately without decryption. However, such schemes are not useful in real-world applications because it is not always possible to know the depth of a function ahead of time, and functions exceeding the depth limit cannot be executed homomorphically.
+\subsubsection{ Bootstrapping}
+\qquad Gentry suggested a technique called bootstrapping to overcome the problem of noise in levelled homomorphic encryption systems. Consider a homomorphic operations-only Levelled homomorphic Encryption scheme with a maximum depth of d.
+
+\qquad Gentry suggested a system in which the intermediate ciphertext is decrypted using homomorphic decryption and the secret key, which is encrypted with the same public key, is delivered to the compute end; this key is known as a bootstrapping key. The assumption is that the bootstrapping key does not reveal any information about the secret key, which is known as the circular security assumption. This technique of refreshing is known as bootstrapping, and the schemes that are capable of doing so are known as bootstrap able.
+
+\quad Although bootstrapping renders Levelled homomorphic systems fully homomorphic, it involves a significant amount of computing, and bootstrapping may be necessary to assess a single function several times.
+
+\subsubsection{Squashing}
+\qquad Bootstrapping seems nice when it offers FHE, but it's not so simple since it needs homomorphic decryption, and decryption circuits (functions) in general have a large depth, requiring these schemes to perform decryption or encryption repeatedly, which is time and computationally expensive.
+
+\qquad There is one solution to this problem is to reduce the depth of the decryption circuit and shift the complexity to the encryption phase, making decryption lightweight (with less depth). This approach is known as Squashing.
+
+\subsubsection{Developing FHE From SWHE}
+\qquad Gentry's method may be applied to any somewhat homomorphic encryption system in three phases to produce a fully homomorphic encryption scheme as follows:
+
+    I)   Developing SWHE
+    
+    II)  SWHE to LHE conversion
+    
+    III) Making LHE self-sustaining or bootstrappable.
+    
+    \qquad $\bullet$ Squashing
+\subsection{The DM Scheme}
+\qquad DM is a symmetric encryption method based on an FHE algorithm. In this method, ciphertexts are represented as vectors, and homomorphic operations correspond to ciphertext vector additions. Because of its straightforward homomorphic operation, it is theoretically simpler than other LWE-based FHEs. The following is DM cryptosystem:
+\subsubsection{Preliminaries}
+ $\bullet$ The LWE Problem 
+
+Regev proposed the LWE[1] issue, which is a well-known computation problem over lattices. Let $n=n\left ( \lambda  \right )$ and $q=q\left ( \lambda  \right )$ indicate the size and modulus of the vector, respectively, for a security parameter $\lambda$, and let $\chi=\chi\left ( \lambda  \right )$ denote the random distribution on $Z$ for the random errors. By sampling $s\leftarrow Z$, the vector $s$ is created. Output the following LWE instance $\left ( a,b \right )=\left ( a,\left ( a.s+e \right ) mod\ q\right )\in Z_{q}^{n+1}$ for vector $a \xleftarrow{} Z_{q}^{n}$ and error $e\leftarrow\chi$. The LWE assumption is that the uniform distribution on $Z_{q}^{n+1}$ created by distinct LWE instances is computationally indistinguishable from the distribution $\chi^{'}$ formed by different LWE instances.
+\subsubsection{DM Cryptosystem [1]}  
+$\bullet$\ $keygen(\lambda)$ :$\lambda$ specifies a security parameter $t$  exceeds two the inline modulus is an integer. The ciphertext dimension
+$n = n(\lambda)$, modulus $q = q(\lambda)$, and ciphertext noise distribution $\chi=\chi(\lambda)$  have been configured to ensure a security level of $\lambda$. In this case,$ x < q/2t$ for any $x\leftarrow \chi$. The parameter set $params= (n,q,t, \chi)$ will be denoted. The key is sampled evenly from: $Z_q^{n}: pk/sk\leftarrow Z_{q}^{n}$.
+
+$\bullet$\ $Enc(m, pk, params)$:the plaintext and ciphertext spaces are $Z_{t}$, $Z_{q}$ respectively.sample  $a←Z_{q}^{n}$, $e \leftarrow \chi$, on input plaintext message $m\in Z_t$ and output ciphertext:
+\begin{equation} \label{2.3}
+LWE_{s}^{t/q}(m)=(a,a.s+\frac{mq}{t}+e)\in Z_{q}^{n+1}
+\end{equation}
+$\bullet$\ $HomeNAND((a_1,b_1),(a_2,b_2))$:on input ciphertexts $c_i = (a_i ,b_i),i\in {1,2}$ and $c_i\in LWE_{s}^{4⁄q} (m_i ,q/16)$ encrypts the plaintext message $m_i$, $output c =(a,b)\in LWE_{s}^{2⁄q} (1-m_{1}m_{2},q/4)$.In particular,
+\begin{equation} \label{2.3}
+(a,b)=(-a_{1}-a_{2},\frac{5}{8}q-b_{1}-b_{2})
+\end{equation} 
+The ciphertext $(a,b)$ is a $1-m_{1}m_{2}$ ciphertext with noise magnitude smaller than $q/4$, ensuring accurate decoding. In DM, homomorphic NAND operations are performed by a few additions between ciphertext vectors, which are simpler and quicker than prior schemes' tensor products or matrix operations. However, if the ciphertext magnitude is more than $q/4$ after another homomorphic operation, the ciphertext will no longer be successfully decrypted. To keep the noise magnitude low, ciphertext must be updated after each homomorphic operation.
+
+To reduce ciphertext noise, an efficient ciphertext refreshing method based on Ring-GSW is presented in DM. The refreshing method takes as input ciphertext $(a,b) \in LWE_{s}^{2⁄q} (m, q/4)$ and the refreshing key $K_{rf}$, and base $B_{r}$ is used to encode the ciphertext $(a,b)$. $K_{rf}$ consists of the following ciphertexts:
+\begin{equation} \label{2.3}
+K_{i,c,j}=E\left ( cs_{i}B_{r}^{j}\ mod\ q \right ),c\in\left \{ 0,...,B_{r}  -1\right \},j=0,... ,d_{r}-1,i=1,.... ,n
+\end{equation} 
+where $d_{r}=\lceil \log_{B_{r}} q\rceil$ and $E(.)$ is the encryption algorithm used in the ciphertext refreshing algorithm Method 1 depicts the ciphertext refreshing algorithm, where $Init(.)$ and $Incr(.)$ indicate the initialization and homomorphic addition of the accumulator $ACC$, respectively. $ACC$ is initially configured as a $b+q/4$ encryption. When the main loop in 2.1 completes, the accumulator's underlying plaintext $v$ satisfies
+\begin{equation} \label{2.3}
+v-\frac{q}{4}=b+\sum_{i,j}^{}a_{i,j}s_{i}B_{r}^{j}=b+\sum_{i}^{}s_{i}\sum_{j}^{}B_{r}^{j}a_{i,j}=b-\sum_{i}^{}a_{i}s_{i}=\frac{q}{2}m+e
+\end{equation}
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.8]{DM msbextract.png}
+\caption{\footnotesize \textbf{DM msbextract[1]}}
+\end{figure}
+Where $e$ is the amount of noise in the input ciphertext $(a,b)$. As $mod\ e < q/4$. It is obvious that $0< v <q/2$ when $m = 1$. In other words, obtaining the plaintext $m$ by extracting the most significant bit (msb) from $v$. The accumulator $ACC$, coupled with a switching key $K_{ks}$ and a testing vector $t=-\sum_{i=0}^{\frac{q}{2}-1}CF(Y^{i})$ is used as input during the $msbExtract$ procedure in figure 2.1 . Here, $Y =X^{\frac{2N}{q}}$, where $z$ is the secret key used in the ciphertext refreshing algorithm's encryption method. 2.2 shows the specifics of $msbExtract$.
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.8]{DM ciphertext Refresh.png}
+\caption{\footnotesize \textbf{DM Ciphertext Refresh [1]}}
+\end{figure}
+
+The ciphertext c in the 2nd step of 2.2 is
+\begin{equation} \label{2.3}
+c=(a,b_{0}+u)=(a.CF(z)+t.e+2u.msb(v))
+\end{equation}
+Where $a = t^{t}.ACR (a),[a,b^{'}]$ is the 2nd row of $ACC$ and
+$u=\lceil Q/2t\rceil\ or\ \lfloor Q/2t\rfloor$. As \ $u/2t, c$ is an encryption of $msb(v) = m$. Thus $c^{t/Q}_CF(z)  (msb(v))$.Following key and modulus
+switching, $c$ is converted to ciphertext under key $s$ modulo $q$. Under the right parameter settings, the noise amplitude of the refreshed ciphertext would be less than $q/16$, allowing for additional homomorphic computations.
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.8]{Flow of DM Homomorphic Scheme.png}
+\caption{\footnotesize \textbf{Flow of DM Homomorphic Scheme}}
+\end{figure}
+
+\subsection{The GSW Scheme[1]}
+\qquad The GSW method is based on matrices' estimated eigenvectors. All ciphertext is represented as a matrix, and all homomorphic operations are just ciphertext matrix operations. In comparison to earlier LWE-based FHE systems that required either keyswitching or relinearization, the GSW method is more natural and succinct. In the next part, we will first go over the mathematical requirements for the GSW scheme, followed by a walkthrough of the GSW cryptosystem.
+\subsubsection{Preliminaries}
+\quad$\bullet$Cyclotonic Ring
+
+If $N$ is a power of 2, the $2N-th$ cyclotonic polynomial is$\emptyset_{2N} (X)=X^{N}+1$, and the  polynomial ring is $R=Z[X]/X^{N} +1$. The residue ring of $R$ modulo an integer $Q$ is denoted by $R_{q}=R/QR$. Each element in $R$ is a polynomial with integer coefficients whose degree is at most$ N - 1$, and each element in $R_Q$ is an element R with all of the polynomial's coefficient vector. Let $ACR(r)$ denote the matrix shown below: As illustrated in, the first column is $CF(r)$, while the other columns are anti-cyclic rotations of $CF(r)$ with the cycled entries ignored.
+\begin{equation} \label{2.3}
+ACR(r)=\begin{vmatrix}
+ &r_{0}  &-r_{N-1}  &\cdots   &-r_{1} \\ 
+ &r_{1}  &r_{0}  &\cdots  &-r_{2} \\ 
+ &\vdots  &\vdots  &\ddots   &\vdots \\ 
+ &r_{N-1}  &-r_{N-2}  &\cdots  &r_{0} 
+\end{vmatrix}
+\end{equation}
+\quad $\bullet$BitDecomp and Flatten Techniques
+
+Let $BD(.)$ represent the BitDecomp operation, and $a,b\in Z_{q}^k,l = |\log_{} q|+1, N = kl$. The operation Bitdecomp is defined as follows:
+\begin{equation} \label{2.3}
+BD(a)=(a_{1,0},...,a_{1,l-1},...,a_{k,0},...,a_{k,l-1})
+\end{equation}
+where $a_{i,j}$ denotes the $j$-th bit in $a_{i}$'s binary representation, from lowest to highest. The upper bound of $a$'s $l$1 norm is reduced from $nq$ to $n\log_{}q$ after BitDecomp. Let $BD^{-1}(.)$ indicate the inverse operation of $BD(. )$;given a vector $a_{'} = (a_{1,0},...,a_{1,l-1},...,a_{k,0},...,a_{k,l-1})\in Z_{q}^{N}$, $BD^{-1}(.)$ is defined as follows:
+\begin{equation} \label{2.3}
+BD^{-1}=(\sum_{j=0}^{l-1}2^{j}a_{1,j},...,\sum_{j=0}^{l-1}2^{j}a_{k,j})\in Z_{q}^{k}
+\end{equation}
+Let $FL(.)$ indicate the flatten operation; $FL(.)$ is defined for a vector $a^{'} Z_{q}^{k}$ as follows.
+\begin{equation} \label{2.3}
+PT(b)=(b_{1},2b_{1},...,b_{k},2b_{k},...,2^{l-1}b_{k})\in Z_{q}^{N}
+\end{equation}
+The following is an evident trait shared by $BD(.)$ and $PT(. )$:
+\begin{equation} \label{2.3}
+<a^{'},PT(b)>=<BD^{-1}(a^{'},b>=<FL(a^{'},PT(b)>
+\end{equation}
+The above equation shows that an essential feature of $FL (.)$ is that it reduces the coefficients of a vector without altering its inner product with the vector $PT (b)$. When the aforementioned operations are performed on a matrix, they are done for each row of the matrix.
+\subsubsection{ GSW Cryptosystem}
+$\bullet$\ $KeyGen(\lambda,L)$: The security parameter and multiplicative depth are denoted by $\lambda.L$. The ciphertext dimension $n = n (\lambda,L)$, modulus $q = q(\lambda,L)$, and noise distribution $\chi=\chi^(\lambda,L)$ are all adjusted to ensure a security level of $\lambda$. Let $m=O(n\log{} q,l=\lfloor \log{}q\rfloor+1,N=(n+1)l$, and the parameter set $params = (n, q,\chi, m)$. $t\leftarrow Z_{q}^{n}$ is sample, $s = (1, -t)\in Z_{q}^(n+1)$, and the secret key $sk = v = PT(s)$ is produced. $B\leftarrow Z_{q}{mn},e\leftarrow \chi^{m},$ is sample,let $b = B.t + e, A = [b || B]$, and output public key $pk = A$.
+
+$\bullet$\ $Enc(params,pk,m)$:For plaintext message $m\in Z_{q}$,sample $R\leftarrow \left\{0,1\right\}^{Nm}$;
+output ciphertext:
+\begin{equation} \label{2.3}
+C=FL(m.I_{n}+BD(R.A)) \in Z_{q}^{NN}
+\end{equation}
+$\bullet$\ $HomeNAND(C_{1},C_{2})$:For input ciphertext pair $C_{1},C_{2}\in Z_{q}^{NxN}$,output will be
+\begin{equation} \label{2.3}
+C_{NAND}=FL(I_{N}-C_{1}C_{2})
+\end{equation}
+After homomorphic NAND operation,$C_NAND$ satisfies the below property:
+\begin{equation} \label{2.3}
+C_{NAND}v=(1-m_{1}.m_{2})v-m_{2}e_{1}-C_{1}e_{2}
+\end{equation}
+In above equation $m_{1},m_{2}$ are the plaintext messages for $C_{1},C_{2}$ and $e_{1},e_{2}$ are noises.Now we assume $B_{0}$ is the upper bound of the noise amplitude in $C_{1},C_{2}$,which is upper bound for $l_{\infty}$ norms of $e_{1},e_{2}$.Obviously $max\left \{||e_{1}||{\infty},||e{2}||{\infty} \right\}<B{0}$.for the result of faltten operation $C_{1},C_{2}\in \left \{0,1\right \}^{NxN}$.As demonstrated in the preceding equation, the noise in $C_NAND$ is upper limited by $(N +1) B_{0}$.
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.8]{Flow of GSW homomorphic Scheme.png}
+\caption{\footnotesize \textbf{Flow of GSW Homomorphic Scheme}}
+\end{figure}
+\subsection{Properties of Homomorphic Encryption Schemes [8]}
+\subsubsection{Strong Homomorphism}
+\qquad Strong homomorphism necessitates that evaluated ciphertexts resemble fresh ciphertexts in appearance.
+\subsubsection{Compactness}
+\qquad The fundamental flaw in the dull realization in which Evaluate just appends the description of the ciphertexts is that we want the decryption process to be the same whether the decrypted ciphertext is fresh or evaluated. This is obviously true if the scheme is substantially homomorphic, although being extremely homomorphic is frequently overkill. Compactness is a lesser concept that captures a lot of the power of homomorphic computing. It simply demands that the size of the ciphertext does not expand with the complexity of the evaluated circuit.
+\subsubsection{ Circuit Privacy}
+\qquad Circuit privacy implies that the ciphertext created by Evaluate does not expose anything about the circuit that it evaluates other than its output value, even to the entity that supplied the public and secret keys. To put it another way, we see Evaluate's operation as a protocol between a client that generates keys and encrypts its input and a server that evaluates a function on that input and provides the result to the client. We next characterize circuit privacy as the server's normal input privacy feature, requiring that the client be simulated using just the output value that it learns.
+\pagebreak
+\section{Conclusion and Future Work}
+\subsection{Conclusion}
+\qquad As the usage of outsourced compute grows, so does the need for safe computation on third-party machines, which is the primary motivating factor in the study of FHE methods. Since the very first FHE plan presented by the gentry, research in FHE has advanced at a rapid speed, with numerous schemes proposed; however, most of the FHE schemes available right now have performance difficulties that make them unsuitable with actual applications. Many industry heavyweights, like Amazon and Microsoft, are also working on the topic, and some of them have even begun releasing open source projects on it, such as Microsoft's SEAL. As the world becomes more concerned about the security and privacy of data, security schemes like FHE gain traction. Although currently existing FHE methods have proven good outcomes in terms of security and accuracy, the majority of them are computationally highly costly and difficult to implement in real-world situations.
+\subsection{Future Work}
+ Here we will discuss the things that need to be done to improve the FHE.
+
+$\bullet$ The majority of current effective FHE methods are based on RLWE, which is a structured version of LWE over algebraic rings. The algebraic structure of RLWE is yet unknown in terms of how resilient it is. It has recently been demonstrated that this structure leads to more effective attacks on SVP-type issues. It is necessary to investigate how secure these techniques are.
+
+$\bullet$The majority of FHE techniques are based on hard lattice problems that deal with huge integer vectors or polynomials. The study of these mathematical objects is time-consuming, which impedes the study and application of FHE. FHE methods based on novel computing problems, such as LWE, would be fantastic.
+
+$\bullet$ Most FHE schemes are specified for numerical data; however, in order to fully apply FHE on outsourced computing, FHE methods that can handle other data types, such as strings and floating points, must be developed.
+
+$\bullet$ There is a lack of comparative study that indicates the calculation capabilities of currently existing schemes in terms of ciphertext size handled, amount of time spent on computation, and simplicity of implementation. Working on benchmarking and comparison studies can make it easier for those who wish to deploy FHE-based solutions that meet their needs without delving too far into each scheme.
+\pagebreak
+\section{References}
+[1] T. L. Xun Wang and J. Li, “A more efficient fully homomorphic encryption scheme based
+on gsw and dm schemes,” Security and Communication Networks, vol. 2018, 2018.
+
+
+\medskip
+[2] C. C. K. G. A. J. C. A. R. Frederik Armknecht, Colin Boyd and Martin, A Guide to Fully
+Homomorphic Encryption.
+
+\medskip
+[3] C. Gentry, A fully homomorphic encryption scheme. PhD thesis, Stanford University, 2009.
+crypto.stanford.edu/craig.
+
+\medskip
+[4] I. Iliashenko, Optimisations of fully homomorphic encryption. PhD thesis, Podunk IN,
+2019.
+
+
+\medskip
+[5] Z. H. Mahmoo and M. K. Ibrahem, “New fully homomorphic encryption scheme based on
+multistage partial homomorphic encryption applied in cloud computing,” AICIS, vol. 2018,
+2018.
+
+\medskip
+[6] J.-L. H. Jian Liu and Z.-L. Wang, “Searchable encryption scheme on the cloud via fully
+homomorphic encryption,” International Conference on Instrumentation Measurement,
+Computer, Communication and Control, vol. 6, 2016.
+
+\medskip
+[7] Jaydip Sen "Homomorphic Encryption — Theory and Application" Submitted: May 3rd 2012Reviewed: May 23rd 2013Published: July 17th 2013 DOI: 10.5772/56687
+
+\medskip
+[8] Shai Halevi (IBM Research) "Homomorphic Encryption"
+April 2017.
+
+
+
+
+\pagebreak
+\section*{Acknowledgement}
+I would like to thank the institute to give me this opportunity to write seminar report on
+Fully Homomorphic Encryption. I would like to thank Professor Sachi Shah for valuable guidence.
+
+
+\end{document}

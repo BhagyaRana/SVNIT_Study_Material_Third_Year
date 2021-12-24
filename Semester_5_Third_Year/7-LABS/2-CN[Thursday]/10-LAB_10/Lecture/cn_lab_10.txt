@@ -1,0 +1,11 @@
+Router#enable
+Router#config terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface gigabitethernet 0/0
+Router(config-if)#ip helper-address 10.0.0.2
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#interface gigabitethernet 0/1
+Router(config-if)#ip helper-address 10.0.0.2
+Router(config-if)#no shutdown
+Router(config-if)#exit

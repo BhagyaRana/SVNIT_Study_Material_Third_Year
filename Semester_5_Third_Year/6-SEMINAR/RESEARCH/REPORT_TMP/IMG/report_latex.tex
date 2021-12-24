@@ -1,0 +1,48 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{fontspec}
+\usepackage{adjustbox}
+\setmainfont{Times New Roman}
+
+
+\usepackage[font={small,bf}]{caption}
+
+\usepackage[nopostdot,nogroupskip,style=super,nonumberlist,toc,automake,toc]{glossaries} %Load glossaries package
+\usepackage[a4paper,margin= 1 in]{geometry}
+
+\linespread{1.5}
+\title{Image Cartoonification With Neural Network}
+\author{Bhagya Rana}
+\date{October 2021}
+
+\usepackage[automake]{glossaries} %Load glossaries package
+
+\makeglossaries
+
+%Here we define a set of example acronyms
+
+\begin{document}
+
+%\includepdf[pages=-]{Seminar_INTRO.pdf}
+
+\pagenumbering{roman}
+
+\tableofcontents
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+\begingroup
+\let\clearpage\relax
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+\let\clearpage\relax
+\addcontentsline{toc}{chapter}{List of Algorithms}
+\listofalgorithms
+\let\clearpage\relax
+\printglossary[title={List of Abbreviations}] %Generate
+\endgroup
+
+
+\end{document}

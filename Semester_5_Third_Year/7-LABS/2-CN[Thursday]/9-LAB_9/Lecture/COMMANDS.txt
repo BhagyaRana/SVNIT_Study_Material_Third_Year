@@ -1,0 +1,24 @@
+Router>enable
+Router#config terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+Router(config)#interface GigabitEthernet0/0
+Router(config-if)#
+Router(config-if)#interface gigabitEthernet 0/0
+Router(config-if)#ip address 192.168.0.1 255.255.255.0
+Router(config-if)#no shut
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Router(config)#interface GigabitEthernet0/0
+Router(config-if)#exit
+Router(config)#ip dhcp pool abc
+Router(dhcp-config)#network 192.168.0.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.0.1
+Router(dhcp-config)#exit
+Router(config)#ip dhcp excluded-address 192.168.0.1 192.168.0.10
+Router(config)#exit
+

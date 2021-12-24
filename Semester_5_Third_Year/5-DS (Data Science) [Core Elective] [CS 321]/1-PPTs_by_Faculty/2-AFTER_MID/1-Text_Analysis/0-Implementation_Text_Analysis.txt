@@ -1,0 +1,8 @@
+References: 
+NLTK Documentation
+https://www.nltk.org/api/nltk.tokenize.html
+
+Implementation code for Text pre-processing (NLP)  
+https://colab.research.google.com/github/RPI-DATA/course-intro-ml-app/blob/master/content/notebooks/16-intro-nlp/02-intro-nlp.ipynb#scrollTo=8nQvO9BTFdGh
+
+https://colab.research.google.com/github/mhuckvale/pals0039/blob/master/Tutorial_NLTK.ipynb#scrollTo=XOGPaeSbsdyk

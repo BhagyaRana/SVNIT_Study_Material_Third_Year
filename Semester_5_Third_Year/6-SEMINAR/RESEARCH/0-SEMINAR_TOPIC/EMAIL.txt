@@ -1,0 +1,25 @@
+
+hod@coed.svnit.ac.in
+mazaveri@coed.svnit.ac.in
+
+Mukesh Sir,
+
+I am Bhagya Rana, 3rd Year CSE Undergraduate at N.I.T., Surat.
+
+I would Like to Work on "Image Cartoonification With Neural Network" Topic for SEMINAR Subject under Your Guidance, Since Your Area of Research are Computer Vision and Image Processing.
+
+This Research will Mainly Deal with Transformation of Realistic Images and Videos into Cartoon Images and Video using GAN.
+
+It will Include Processing of Loading the image, Compressing the Image [K means Clustering], Detecting Edges, Creating Edge Mask and Tranforming the Images.
+
+Some References I read Regarding the Topic: 
+
+1.) https://openaccess.thecvf.com/content_cvpr_2018/papers/Chen_CartoonGAN_Generative_Adversarial_CVPR_2018_paper.pdf
+2.) https://openaccess.thecvf.com/content_CVPR_2020/papers/Wang_Learning_to_Cartoonize_Using_White-Box_Cartoon_Representations_CVPR_2020_paper.pdf
+3.) https://www.irjet.net/archives/V7/i1/IRJET-V7I1376.pdf
+
+
+
+https://systemerrorwang.github.io/White-box-Cartoonization/paper/06791.pdf
+
+

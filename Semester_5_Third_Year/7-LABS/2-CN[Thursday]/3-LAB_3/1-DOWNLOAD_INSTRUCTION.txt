@@ -1,0 +1,16 @@
+1 - Sign Up
+https://id.cisco.com/signin/register
+
+2 - Account Activation on Email
+
+3 - Enroll in this Course
+https://www.netacad.com/courses/packet-tracer
+
+4 - Go to this Course "Introduction to Packet Tracer English 0821a"
+& Click on "Student Support and ResourcesPage"
+
+5 - Third Row ["Packet Tracer"] in Table will have the Installation Link of the Software
+
+6 - Wait Patiently for it to Download [200 MB File] 
+[If you Dont have StarLink Internet, It may take more than 5 mins]
+DONE!

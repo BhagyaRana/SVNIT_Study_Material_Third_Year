@@ -1,0 +1,6 @@
+
+How do the layers of the internet model correlate to the layers of the OSI model?
+How does information get passed from one layer to the next in the Internet model?
+How are OSI and ISO related to each other ?
+Compare OSI model to TCP/IP model.
+What are headers and trailers, and how do they get added and removed?

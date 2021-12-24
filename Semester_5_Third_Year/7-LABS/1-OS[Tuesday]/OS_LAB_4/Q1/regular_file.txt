@@ -1,0 +1,10 @@
+This is Regular File which can Contain text, script, image, videos
+
+This is TEXT!
+
+This is Script!
+
+if [ $# -ne 1 ]; then
+    echo "Right usage: ./q1.sh <filename>"
+    exit 2
+fi

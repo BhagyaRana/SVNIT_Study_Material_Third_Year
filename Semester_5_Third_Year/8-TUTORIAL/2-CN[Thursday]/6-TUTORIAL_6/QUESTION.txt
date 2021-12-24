@@ -1,0 +1,5 @@
+1. Should the RTP payload type (PT) field be used for multiplexing different streams?
+
+2. Can RTP run over IPv6? ATM?
+
+3. What is VoIP gateway and explain the basic features of it?

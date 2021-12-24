@@ -1,0 +1,69 @@
+<!doctype html>
+<head>
+  <!-- required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- importing google apis for a custom font-->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+
+  <!--Boostrap elements in the code-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+  <title>WHITE-BOX-CARTOONIZATION</title>
+</head>
+
+<body>
+  <style>
+    body {
+      background-color: black;
+      font-family: Play ;
+    }
+    </style>
+  <div align='center' style="fill-opacity: 1;"><br>
+    <h1 style="color:whitesmoke;">🎬  WHITE BOX CARTOONIZATION</h1>
+  </div>
+  <div class="card-deck m-4 py-2 px-4 border-right-100">
+    <div class="card shadow-lg col-md-6">
+      <div class="card-body px-0 px-sm-2">
+        <div class="">
+          <label class="btn btn-primary btn-xs px-2">
+            Upload Pics <input type="file" id="file" name="file" accept="image/*" hidden>
+          </label>
+        </div>
+        <img id="input" class="d-block img-fluid mx-auto"></img>
+      </div>
+    </div>
+    <div class="card shadow-lg col-md-6">
+      <div class="card-body px-0 px-sm-2">
+        <div class="d-flex justify-content-between align-items-baseline">
+          <h5 class="card-title">Cartoonized Pic</h5>
+          <a id="download" class="btn btn-xs btn-primary px-2" download="cartoon.png" href="">Save</a>
+        </div>
+        <canvas id="output" class="d-none img-fluid mx-auto"></canvas>
+      </div>
+    </div>
+  </div>
+
+<body>
+<style>
+footer {
+  text-align: center;
+  text-shadow:black;
+  padding: 3px;
+  color: whitesmoke;
+}
+</style>
+<footer>
+  <p>👉 Presented as part of the 6th Semester Mini-Project @ Terna Engineering College<br><br>👷 Project Authors: Amey Thakur, Hasan Rizvi and Mega Satish (Group 11, Batch of 2022)<br><br>
+  <a href="https://openaccess.thecvf.com/content_CVPR_2020/html/Wang_Learning_to_Cartoonize_Using_White-Box_Cartoon_Representations_CVPR_2020_paper.html">📓 Read the original paper by Xinrui Wang and Jinze Yu</a><br><br><br>
+  <a href="mailto:ameythakur20@gmail.com" style="color: greenyellow;">🔗 Queries? Get in touch </a><br>
+  <a href="https://github.com/Amey-Thakur/WHITE-BOX-CARTOONIZATION-WEB-APP/pulls" style="color: greenyellow;">🔗 Interested in collaborating? Open a pull request </a</p>
+</footer>
+</body>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm/dist/tf-backend-wasm.js"></script>
+  <script async src="model.js"></script>
+</body>
+</html>

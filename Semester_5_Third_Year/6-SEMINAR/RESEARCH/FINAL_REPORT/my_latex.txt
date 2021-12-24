@@ -1,0 +1,565 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{fontspec}
+\usepackage{adjustbox}
+\setmainfont{Times New Roman}
+\usepackage{pifont}
+\usepackage{pdfpages}
+
+\usepackage[font={small,bf}]{caption}
+
+\usepackage[nopostdot,nogroupskip,style=super,nonumberlist,toc,automake,toc]{glossaries} %Load glossaries package
+\usepackage[a4paper,margin= 1 in]{geometry}
+
+\linespread{1.5}
+\title{Image Cartoonification With Neural Network}
+\author{Bhagya Rana}
+\date{October 2021}
+
+\usepackage[printonlyused,withpage]{acronym}
+\usepackage[automake]{glossaries} %Load glossaries package
+
+\makeglossaries
+
+%Here we define a set of example acronyms
+
+\begin{document}
+
+\includepdf[pages=-]{Seminar_INTRO.pdf}
+
+\pagenumbering{roman}
+
+\tableofcontents
+
+\begingroup
+
+\let\clearpage\relax
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+\let\clearpage\relax
+
+\glsaddall
+\printglossary[title={List of Abbreviations}]
+
+\endgroup
+
+\begin{abstract}
+
+We propose extending the existing GAN framework with a new framework for estimating generative models via an adversarial process, as well as developing a white-box controlled image cartoonization that can create high-quality cartoonized pictures from real-world photos. 
+
+The images are broken down into three cartoon forms. The surface representation of cartoon pictures comprises a smooth surface, the structure representation relates to sparse color-blocks and flattens global information in the celluloid style process, and the texture representation represents high-frequency texture, curves, and features in cartoon images.
+
+Our method's learning objectives are based on each extracted representation individually, allowing us to regulate and alter our framework. Through a qualitative and quantitative examination of the created samples, this study exhibits the framework's potential. Learning to Cartoonize Using White-Box Cartoon Representations is the model provided by Xinrui Wang and Jinze Yu for this project.
+
+\end{abstract}
+
+\pagenumbering{arabic}
+
+\chapter{Introduction}
+
+Cartoons are a popular art style that has been used in a variety of settings, ranging from print media to children's narrative. Some of the cartoon artwork was inspired by real-life scenes. Manually recreating real-life scenarios, on the other hand, may be time-consuming and needs advanced abilities.
+
+The advancement of Machine Learning has broadened the possibilities for making visual artworks. Some well-known items have been produced by converting real-world photos into suitable cartoon scene components, a technique known as picture cartoonization.
+
+Using the GAN framework, white box cartoonization transforms high-quality real-life photographs into outstanding cartoon visuals.
+
+\section{Aim and Objective of the Project}
+
+The primary goal of this project is to construct current cartoon animation workflows that allow artists to produce material from a number of sources. A cartoon is a popular art form that has been extensively used in a variety of settings. Some well-known items have been produced by converting real-world photos into suitable cartoon scene components, a technique known as picture cartoonization.
+
+The need to have a thorough understanding of the Generative Adversarial Networks (GANs) Framework was one of the driving forces for the creation of this project.
+Interest in creating a user-friendly picture cartoonization paradigm.
+To broaden our understanding of recently created technologies such as CartoonGAN - Tensorflow, and W-B Cartoonization, we will attempt to build it as a web app utilising HTML/CSS and Tensorflow.js.
+
+\section{Scope of the Project}
+
+In picture improvement and augmentation, Generative Adversarial Networks (GAN) have achieved impressive results. 
+Our current project is centred on the cartoonization of high-quality photos. This might be useful in the entertainment sector. GAN framework may also be applied in other domains including as video games, anime, and animated films.
+
+\section{Organization of the Report}
+
+\begin{itemize}
+    \item The first chapter presents a quick outline of the project's goals. It also establishes the project's scope.
+    \item The literature study of the current system is included in Chapter 2 of the report, as well as a brief explanation of the existing system and comparisons between the CartoonGAN system and White Box Cartoonization utilising GAN.
+    \item The issue statement is defined in Chapter 3 and a new system is proposed as a solution.
+    \item The UML diagrams in Chapter 4 provide an abstract perspective of the system. This chapter provides a full overview of the technology and processes employed in the project's development. In addition, the hardware and software requirements, as well as the programme components, are specified.
+    \item The approach employed in our proposed system, as well as the various designs of the components, are elaborated in Chapter 5. It also describes the mathematical ideas and methods that will be employed in the project's execution.
+    \item Chapter 6 discusses the technical specifics as well as the dataset used to train the model. It also demonstrates how the project works.
+    \item The project's performance is evaluated in Chapter 7. To achieve the same, we've built up an experimental setup. Quantitative and qualitative comparisons are also provided.
+    \item The final chapter is Chapter 8. This chapter provides an overview of the entire project.
+\end{itemize}
+
+
+
+\chapter{Literature Survey}
+
+
+\section{A Brief History of an Existing System Comparable to Our Selected System}
+
+Cartooning is a traditional art form in and of itself, but advancements in the field of Artificial Intelligence have opened up a slew of new possibilities. Many models for creating cartoon graphics from photographs have been devised, however they all have flaws.
+\\
+CartoonGAN is one of the technologies for creating cartoonized pictures, however it adds noise to the image and lowers its quality. White Box Cartoonization, on the other hand, solves these issues and produces visuals that are more accurate and crisp.
+
+The following are the difficulties in CartoonGAN:
+\begin{enumerate}
+    \item The issue of generator and discriminator stability.
+    \item The problem of determining the object's location.
+    \item The difficulty in grasping the perspective of visuals, whether 2D or 3D.
+    \item The difficulty in comprehending global items such as trees, flowers, and so on.
+\end{enumerate}
+
+This study will be based on the Learning to Cartoonize Using White-Box Cartoon Representations paradigm established by Xinrui Wang and Jinze Yu. The major goal of this project is to construct current cartoon animation workflows that allow artists to produce material from a range of sources.
+
+\section{WBC Using GAN Framework vs. Previous System}
+
+White Box Cartoonization is based on Black Box Cartoonization, although it addresses some of the latter's flaws.
+
+By analysing the produced dataset, certain cartoon methods, for example, pay greater attention to global palette themes and consider line sharpness as a secondary problem. Others place a high emphasis on the sharpness of items and people. Black box cartoonization algorithms struggle to deal with such a wide range of workflow requirements, and fitting the training data directly with a black-box model might have a detrimental impact on generality and stylization quality, resulting in low-quality outputs.
+
+Researchers consulted artists and observed cartoon painting behaviour to identify three distinct cartoon image representations: a surface representation that refers to sparse color-blocks and flattens global content in the workflow, and a texture representation that reflects high-frequency texture, contours, and details in cartoon images.
+Each representation is retrieved via image processing modules, and a generative adversarial network (GAN) architecture is used to learn the extracted representations and cartoonize the input pictures.The weight of each representation in the loss function can be adjusted to regulate output styles.
+
+The proposed approach outperformed three existing cartoonization methods in both cartoon quality (similarity between the input images and cartoon images) and overall quality (identifying undesirable colour shifts, texture distortions, high-frequency noise, or other artefacts in the images) in a user study with 10 respondents and 30 images.
+
+\chapter{Problem Statement}
+
+These days, AI-powered cartoonization has a wide range of practical uses, ranging from individualised anime-style avatars to video and even fine art. Many black-box cartoonization frameworks, on the other hand, provide consumers little flexibility or adaptability when it comes to converting real-world images into cartoon sceneries.
+
+Researchers have now presented a framework that can generate high-quality cartoonized pictures with significantly increased controllability to fulfil the needs of artists across a broader spectrum of styles and application cases. We hope to create a web application that users may feed photographs into to generate high-quality cartoonized outputs.
+
+\chapter{Design and Implementation}
+
+\section{Use Case Diagram}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/image-005.png}
+    \caption{Use Case Diagram}
+    \label{fig_use_case}
+\end{figure}
+
+Figure \ref{fig_use_case} Depicts the Case Study Diagram of the Project.
+
+\section{Flowchart of White-Box-Cartoonization Model}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/image-007.png}
+    \caption{Flowchart}
+    \label{fig_flowchart}
+\end{figure}
+
+Figure \ref{fig_flowchart} Depicts White-Box-Cartoonization Model Flowchart.
+
+\section{Architecture of WBC Model}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/image-008.png}
+    \caption{Architecture of Generator and Discriminator}
+    \label{fig_architecture}
+\end{figure}
+
+In the diagram \ref{fig_architecture} above, we demonstrate the architecture of the generator and discriminator networks. The generator network is a U-Net-like network that is completely convolutional. 
+\\
+To eliminate checkerboard effects, we utilise convolution layers with stride2 for downsampling and bilinear interpolation layers for upsampling. There are just three types of layers in the network: convolution, Leaky ReLU (LReLU), and bilinear resize layers. 
+\\
+This makes it simple to integrate into edge devices like mobile phones. PatchGAN is used in the discriminator network, which has a convolution layer as the final layer.
+
+Each pixel in the output feature map corresponds to a patch in the input picture with a patch size equal to the perceptual field and is used to determine whether the patch belongs to cartoon or produced images.
+PatchGAN improves detail discrimination and speeds training.
+To enforce the Lipschitz constraint on the network and stabilise training, spectral normalisation is applied after each convolution layer (save the last one).
+
+\chapter{Methodology}
+
+\section{Introduction to Generative Adversarial Networks(GANs)}
+
+GANs (generative adversarial networks) are a fascinating new machine learning technique. GANs are generative models, which means they generate new data instances based on your training data. GANs, for example, can develop visuals that resemble photos of human faces, despite the fact that the faces do not belong to anybody.
+
+GANs are a generative modelling approach that employs deep learning approaches such as convolutional neural networks.
+Generative modelling is an unsupervised learning job in machine learning that entails automatically detecting and learning the regularities or patterns in incoming data such that the model can be used to produce or output new instances that may have been chosen from the original dataset.
+
+GANs are a clever way of training a generative model by framing the problem as a supervised learning problem with two sub-models: the generator model, which we train to generate new examples, and the discriminator model, which tries to classify examples as real (from the domain) or fake (from outside the domain) (generated). The two models are trained in an adversarial zero-sum game until the discriminator model is tricked roughly half of the time, indicating that the generator model is producing believable instances.
+
+GANs are an exciting and rapidly changing field that fulfils the promise of generative models by generating realistic examples across a wide range of problem domains, most notably in image-to-image translation tasks such as translating photos of summer to winter or day to night, and in generating photorealistic photos of objects, scenes, and people that even humans cannot tell are fake.
+
+
+\section{Deep Convolutional Generative Adversarial Networks}
+
+DCGAN is an extension of the GAN architecture that uses deep convolutional neural networks for both the generator and discriminator models, as well as model and training settings that result in robust generator training.
+
+The DCGAN is significant because it identified the model restrictions that must be met in order to construct high-quality generator models in practise. As a result of this design, a huge number of GAN extensions and applications have been developed quickly.
+
+\section{Architecture of GAN}
+
+A GAN's architecture consists of two main components: the generating network and the discriminator network. Each network can be any type of neural network, including an Artificial Neural Network (ANN), a Convolutional Neural Network (CNN), a Recurrent Neural Network (RNN), or a Long Short Term Memory (LSTM) (LSTM). The discriminator must have completely linked layers, culminating in a classifier.
+
+The generator learns to create realistic data in a generative adversarial network (GAN). The discriminator learns to identify the generator's bogus data from genuine data by using the created instances as negative training examples. The generator is penalised by the discriminator if it produces improbable results.
+
+When training begins, the generator produces fake data, and the discriminator
+quickly learns to tell that it's fake:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/image-009.png}
+    \caption{Discriminator is Learning}
+    \label{fig_discriminator}
+\end{figure}
+
+As training progresses, the generator gets closer to producing output that can fool
+the discriminator:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/image-010.png}
+    \caption{Output to Fool Discriminator}
+    \label{fig_fool}
+\end{figure}
+
+Finally, if generator training goes well, the discriminator gets worse at telling the
+difference between real and fake. It starts to classify fake data as real, and its
+accuracy decreases.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/image-011.png}
+    \caption{Results}
+    \label{fig_both_real}
+\end{figure}
+
+Whole System Explained in Below Figure \ref{fig_gan_architecture}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/image-012.png}
+    \caption{Architecture of GAN}
+    \label{fig_gan_architecture}
+\end{figure}
+
+The discriminator and the generator are both neural networks. The discriminator input is directly connected to the generator output. The discriminator's classification delivers a signal to the generator, which it uses to update its weights through backpropagation.
+
+
+\subsection{The Discriminator}
+
+In a GAN, the discriminator is just a classifier. It tries to tell the difference between genuine data and data generated by the generator. Any network architecture relevant to the sort of data it's categorising might be used.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/image-013.png}
+    \caption{Backpropagation in discriminator training}
+    \label{fig_back_proagation}
+\end{figure}
+
+
+\subsubsection{Discriminator Training Data}
+
+The discriminator's training data is derived from two sources: genuine data instances, such as real photographs of individuals, and synthetic data instances. During training, the discriminator considers these situations as positive examples.
+The generator generates fictitious data objects. During training, the discriminator utilises these situations as negative examples.
+
+The two "Sample" boxes in Figure \ref{fig_back_proagation} reflect the two data sources that input into the discriminator. The generator does not train during discriminator training. It keeps its weights constant while creating samples for the discriminator to learn from.
+
+\subsubsection{Training the Discriminator}
+
+The discriminator is linked to two different loss functions. During discriminator training, the discriminator disregards the generator loss in favour of focusing solely on the discriminator loss. During generator training, we employ the generator loss, as detailed in the following section.
+During discriminator training,
+
+\begin{enumerate}
+    \item The discriminator distinguishes between actual and fraudulent data generated by the generator.
+    \item The discriminator loss penalises the discriminator for incorrectly categorising a genuine instance as a fake instance or a fake instance as a real instance.
+    \item The discriminator's weights are updated by backpropagation from the discriminator loss via the discriminator network.
+\end{enumerate}
+
+\subsection{Generator}
+
+By integrating input from the discriminator, the generator element of a GAN learns to produce bogus data. It learns how to convince the discriminator that its output is real.
+
+Generator training necessitates a greater degree of integration between the generator and the discriminator than discriminator training. The random input generator network, which turns random input into a data instance, is part of the GAN that trains the generator.
+
+discriminator network, which classifies the generated data discriminator output, which penalises the generator for failing to deceive the discriminator generator loss, which penalises the generator for failing to fool the discriminator.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.90\textwidth]{images/image-014.png}
+    \caption{Backpropagation in generator training}
+    \label{fig_back_prop}
+\end{figure}
+
+\subsubsection{Using the Discriminator to Train the Generator}
+
+To train a neural network, we change the weights of the net to decrease the inaccuracy or loss of its output. However, in our GAN, the generator is not directly related to the loss that we are attempting to change. The generator net feeds into the discriminator net, which provides the output we're seeking to influence. The generator loss penalises the generator for providing a sample that the discriminator network deems to be fraudulent.
+
+Backpropagation corrects each weight by estimating the weight's influence on the output, or how the output would change if the weight were modified. The impact of a generator weight, on the other hand, is determined by the impact of the discriminator weights into which it feeds. As a result, backpropagation begins at the output and flows back into the generator via the discriminator.
+
+At the same time, we don't want the discriminator to change while the generator is being trained. Attempting to strike a moving target would make an already difficult situation considerably more difficult for the generator.
+As a result, we train the generator using the following procedure:
+
+\begin{enumerate}
+    \item Take a random noise sample.
+    \item Generate generator output using sampled random noise.
+    \item Determine whether the discriminator's output is "Real" or "Fake".
+    \item Determine the loss resulting from discriminator categorization.
+    \item To acquire gradients, backpropagate via both the discriminator and the generator.
+    \item Change just the generator weights using gradients. 
+\end{enumerate}
+
+\section{Pros of GAN Framework}
+
+Exceptional outcome in terms of content created and realistic visual content; may also be modelled for other applications such as picture restoration, etc.
+
+\section{Cons of GAN Framework}
+
+Despite GAN's success, the potential of such a framework has several limitations.
+Training is difficult since it requires a large amount of computation.
+"Realistic," yet not true. 
+
+A false pattern can be formed, especially for tiny size structures or non-natural items like text --> loss function issue; some physical effects in the image, such as shadow, will appear artificial.
+
+\section{White-Box-Cartoonization}
+
+We suggest identifying three white-box representations from photos separately:
+
+\begin{enumerate}
+    \item The portrayal on the surface
+    \item The portrayal of the structure
+    \item The depiction of texture
+\end{enumerate}
+
+In the celluloid style process, the surface representation refers to the sparse colour blocks and flattens global content, whereas the structural representation refers to the smooth surface of cartoon pictures.
+
+The texture representation in cartoon pictures reflects high-frequency texture, curves, and details. A Generative Adversarial Network (GAN) architecture is utilised to learn the extracted representations and cartoonize photos.
+
+\subsection{Surface Representation}
+
+\begin{itemize}
+    \item The surface representation mimics the cartoon painting approach, in which painters use coarse brushes to sketch rough drawings with smooth surfaces that resemble comic pictures.
+    \item For edge-preserving filtering, a differentiable guided filter is used to smooth pictures while maintaining the global semantic structure.
+    \item Edge-preserving filtering is a type of image processing that removes noise and textures while keeping sharp edges. The median, bilateral, directed, and anisotropic diffusion filters are examples.
+\end{itemize}
+
+\subsubsection{Surface Loss Formula}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{images/surface_loss_formula.png}
+    \caption{Surface Loss Formula Equation}
+    \label{fig_surface_loss_eqn}
+\end{figure}
+
+Note that a discriminator Ds is used to determine if model outputs and reference cartoon pictures have comparable surfaces, and a guide generator G is used to learn the information contained in the extracted surface representation.
+
+\section{Structure Representation}
+
+To segment photos into discrete regions, we initially utilised the felzenszwalb method. We use selective search to combine segmented regions and obtain a sparse segmentation map since superpixel techniques only examine pixel similarity and neglect semantic information.
+
+Standard superpixel algorithms use an average of the pixel value to colour each separated region. By analysing the processed dataset, we discovered that this decreases global contrast, darkens pictures, and generates a hazing effect on the final output. As a result, we present an adaptive coloration algorithm.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{images/adaptive_coloring_formula.png}
+    \caption{Adaptive Coloring Equation}
+    \label{fig_adaptive_color}
+\end{figure}
+
+This effectively enhances the contrast of images and reduces the hazing effect.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/image-015.png}
+    \caption{Adaptive Coloring Algorithm}
+    \label{fig_adaptive_algo}
+\end{figure}
+
+(a) and (b) show segmentation maps with different colouring methods, while
+(c) and (d) shows results generated with different colouring methods. Adaptive
+colouring generates results that are brighter and free from hazing effects.
+
+\subsection{Structure Loss Formula}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{images/structure_loss_formula.png}
+    \caption{Structure Loss Formula}
+    \label{fig_structure_loss}
+\end{figure}
+
+Note: To enforce spatial restrictions between our results and the retrieved structure representation, we leverage high-level features extracted by a pre-trained VGG16 network.
+
+\subsection{Texture Representation}
+
+The high-frequency elements of cartoon pictures are important learning objectives, but brightness and colour information help differentiate cartoon images from real-life photos. As a result, we suggest a random colour shift method. With luminance and colour information removed, the random colour shift may create random intensity maps.
+
+Frcs converts colour pictures into single-channel texture representations, preserving high-frequency textures while reducing the effect of colour and brightness.
+
+\subsection{Textural Representation Formula}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{images/textual_representation_formula.png}
+    \caption{Textual Representration Formula}
+    \label{fig_textual_rep}
+\end{figure}
+
+\subsection{Agile Methodology}
+
+Agile methodology is a development and testing strategy that encourages continuous iteration throughout the project's software development life cycle.
+Unlike the Waterfall paradigm, the Agile model allows both development and testing to take place at the same time. It is a new method to software development that incorporates iterative development and incremental product delivery. Agile technique is dynamic, context-specific, change-aggressive, and growth-oriented.
+
+Four basic values are emphasised in agile software development.
+
+\begin{enumerate}
+    \item Interactions between individuals and teams over procedures and tools
+    \item Useful software over extensive documentation
+    \item Customer involvement in contract negotiations
+    \item Responding to change in accordance with a plan 
+\end{enumerate}
+
+\subsection{System's Operation}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{images/image-018.png}
+    \caption{Working of the system}
+    \label{fig_working_of_sys}
+\end{figure}
+
+\chapter{Performance Evaluation}
+
+\section{Previous Methods}
+
+Our technique is compared to four algorithms that represent:
+
+\begin{enumerate}
+    \item Neural Style Transfer
+    \item Image-to-Image Translation
+    \item Image Abstraction
+    \item Image Cartoonization
+\end{enumerate}
+
+\section{Evaluation Metrics}
+
+We give findings from qualitative trials with information from four distinct approaches and original photographs, as well as qualitative analysis. In quantitative trials, we employ Frechet Inception Distance (FID) to assess performance by computing the distance between the source and target picture distributions. Candidates in the user research are asked to score the results of several approaches on a scale of 1 to 5 in cartoon quality and overall quality. Higher scores indicate higher quality.
+
+\section{Validation of Cartoon Representations}
+
+A categorization experiment and a quantitative experiment based on FID are done to confirm our suggested cartoon representations as acceptable and effective. On our training dataset, we train a binary classifier to discriminate between real-world photographs and cartoon ones. 
+
+In our architecture, the classifier is created by adding a fully linked layer to the discriminator. The trained classifier is next tested on the validation set to ensure that each cartoon representation has an impact.
+
+We discovered that the derived cartoon representations successfully fooled the trained classifier, since it obtains poorer accuracy in all three extracted cartoon representations when compared to the original pictures.
+
+The estimated FID metrics corroborate our hypothesis that cartoon representations assist bridge the gap between real-world pictures and cartoon images, since all three extracted cartoon representations had lower FID than the original images.
+
+\section{Qualitative Comparison}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/image-019.png}
+    \caption{Qualitative comparison}
+    \label{fig_quality_comp}
+\end{figure}
+
+Comparisons between our method and previous methods are shown in Figure \ref{fig_quality_comp}
+
+The white-box framework aids in the creation of crisp outlines. Image abstraction results in noisy and jumbled contours, while earlier approaches fail to produce clean contours.Our technique, on the other hand, has distinct borders, such as a human face and clouds. Color harmony is often helped by cartoon depictions. CycleGAN creates Fast Neural Style results in overly smoothed colour and darkened visuals. CartoonGAN distorts colours in the form of human features and ships.Our technique, on the other hand, prevents erroneous colour changes to things like faces and ships. 
+
+Finally, although our technique efficiently minimises artefacts while keeping small details, such as the guy sitting on the stone, all other methods result in over-smoothed or distorted features. High-frequency artefacts are also caused by approaches like CycleGAN, picture abstraction, and various CartoonGAN styles. To summarise, our technique exceeds prior methods in terms of producing photos with harmonious colour, crisp borders, fine details, and little noise.
+
+\section{Quantitative Evaluation}
+
+The Frechet Inception Distance (FID) is a commonly used metric for assessing the quality of synthetic pictures. To extract high-level features from photos and calculate the distance between two image distributions, the pre-trained Inception-V3 model is employed. FID is used to assess the performance of prior approaches as well as our own. Our approach produces photos with the lowest FID to cartoon image distribution, indicating that it produces the most cartoon-like outcomes.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/image-020.png}
+    \caption{Ablation study by removing each component}
+    \label{fig_ablation_study}
+\end{figure}
+
+The grassland and the dog's leg have uneven textures,seen in Figure 6.2(a). This is due to lack of high-frequency information preserved in the surface representation, which reduces the model's capacity to cartoonize. Figure 6.2(b) shows high-frequency sounds caused by ablating the structural representation. On the meadow and the mountain, there is a lot of pepper and salt. Because of the structural representation, pictures were flattened and high-frequency information was lost.
+
+Figure 6.2(c) shows cloud borders that are hazy. This is the case because directed filtering decreases high-frequency information while keeping smooth surfaces. The results of our whole model are shown in Figure 6.2(d), which include smooth features, clear boundaries, and dramatically decreased noise. Finally, these three representations help to improve the cartoonization capability of our technique.
+
+\chapter{Conclusion}
+
+\section{Conclusion}
+In this study, we provide a GAN-based deployed white-box controlled image cartoonization system that can produce high-quality cartoonized pictures from real-world photos. 
+
+The surface representation, the structure representation, and the texture representation are the three cartoon representations of an image. Three representations for network training are extracted using image processing modules that correspond to each other. 
+
+To validate the performance of our technique, we conducted several quantitative and qualitative tests. Ablation experiments are also carried out to show how each representation affects the brain.
+
+\section{Future Prospects}
+
+Furthermore, extensive study and development in this white box cartoonization might lead to a wide range of applications:
+
+\begin{itemize}
+    \item Quickly creates prototypes or sprites for anime, cartoons, and games.
+    \item It may be used to create simple art since it subdues face characteristics and information in general.
+    \item Games can simply input shortcut scenes without needing motion capture, and it may be modelled as an assistance to graphic designers or animators. 
+\end{itemize}
+
+\begin{thebibliography}{100} % 100 Max total number of references
+
+\bibitem{a} J. Bruna, P. Sprechmann, and Y. LeCun. Super-resolution
+with deep convolutional sufficient statistics. In \textit{International
+Conference on Learning Representations (ICLR)}, 2016
+
+\bibitem{b} Radhakrishna Achanta, Appu Shaji, Kevin Smith, Aurelien
+Lucchi IEEE \textit{Transactions on Pattern Analysis and Machine Intelligence},
+IEEE Transactions on Pattern Analysis and Machine Intelligence
+
+\bibitem{c} Yang Chen, Yu-Kun Lai, and Yong-Jin Liu. Cartoongan:
+Generative adversarial networks for photo cartoonization. In IEEE Conference on Computer Vision and Pattern Recognition, 2018.
+
+\bibitem{d} Justin Johnson, Alexandre Alahi, and Li Fei-Fei. \textit{Perceptual
+losses for real-time style transfer and super-resolution}. In
+European Conference on Computer Vision, Springer, 2016.
+
+\bibitem{e} Phillip Isola, Jun-Yan Zhu, Tinghui Zhou, and Alexei A
+Efros. \textit{Image-to-image translation with conditional adversarial
+networks}. In IEEE Conference on Computer Vision and Pattern Recognition, 2017.
+
+\bibitem{f} Eirikur Agustsson and Radu Timofte.  challenge
+on single image super-resolution: Dataset and study. In The
+IEEE Conference on Computer Vision and Pattern Recognition (CVPR) Workshops, July 2017
+
+\bibitem{g} Hussein A Aly and Eric Dubois. Image up-sampling using
+total-variation regularization with a new observation model. \textit{IEEE Transactions on Image Processing}
+
+\bibitem{h} Vincent Dumoulin, Jonathon Shlens, and Manjunath Kudlur.
+A learned representation for artistic style. \textit{arXiv} preprint \textit{arXiv}
+
+\bibitem{i} Qingnan Fan, Jiaolong Yang, David Wipf, Baoquan Chen, and Xin Tong. Image smoothing via unsupervised learning
+
+\bibitem{j} Zeev Farbman, Raanan Fattal, Dani Lischinski, and Richard Szeliski. Edge-preserving decompositions for multi-scale tone and detail manipulation.
+
+\bibitem{k} Pedro F Felzenszwalb and Daniel P Huttenlocher. Efficient graph-based image segmentation. \textit{International Journal of Computer Vision}
+
+\bibitem{l} Xun Huang, Ming-Yu Liu, Serge Belongie, and Jan Kautz. Multimodal unsupervised image-to-image translation. In \textit{European Conference on Computer Vision}
+
+\bibitem{m} P. L. Rosin and J. Collomosse. Image and Video-Based Artis-
+tic Stylisation. Springer, 2013.
+
+\bibitem{n} K. Simonyan and A. Zisserman. Very deep convolutional
+networks for large-scale image recognition. CoRR 
+
+\bibitem{o} L. Gatys, A. Ecker, and M. Bethge. Image style transfer
+using convolutional neural networks \textit{IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}
+
+\bibitem{p} Tero Karras, Samuli Laine, and Timo Aila. A style-based generator architecture for generative adversarial networks. In \textit{IEEE Conference on Computer Vision and Pattern Recognition, 2019}
+
+\bibitem{q} Jan Eric Kyprianidis and J¨urgen D¨ollner. Image abstraction
+by structure adaptive filtering.
+
+\bibitem{r} Li Xu, Jimmy Ren, Qiong Yan, Renjie Liao, and Jiaya Jia. Deep edge-aware filters. In \textit{International Conference on Machine Learning,2015}
+
+\bibitem{s} Jun-Yan Zhu, Taesung Park, Phillip Isola, and Alexei A Efros. Unpaired image-to-image translation using cycleconsistent adversarial networks. In Proceedings of \textit{IEEE International Conference on Computer Vision, 2017}
+
+\bibitem{t} JueWang, Yingqing Xu, Heung-Yeung Shum, and Michael F
+Cohen. Video tooning. In \textit{ACM Transactions on Graphics, 2004}
+
+\end{thebibliography}
+
+\end{document}
