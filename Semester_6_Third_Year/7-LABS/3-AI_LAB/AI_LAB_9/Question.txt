@@ -1,0 +1,8 @@
+Implementation of 8 Puzzle Problem using Below Alogrithm in Prolog.
+
+Compare the Complexity of both algorithms.
+Which Algorithm is best suited for implementation of 9 Puzzle Problem and Why?
+
+1 - Breadth First Search
+2 - Depth for Search
+3 - Uniform Cost Search

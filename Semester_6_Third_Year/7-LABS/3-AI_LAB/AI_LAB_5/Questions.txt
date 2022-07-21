@@ -1,0 +1,6 @@
+1. Perform Towers of Hanoi.
+2. WAP to check whether the number is present in the list or not.
+3. WAP to add a number in the list.
+4. WAP to concat two lists and store the result in third list.
+5. WAP to delete an element from the list.
+6. WAP to sum the elements of a list of numbers.

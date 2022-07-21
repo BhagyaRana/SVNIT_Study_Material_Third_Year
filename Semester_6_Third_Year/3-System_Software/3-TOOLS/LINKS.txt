@@ -1,0 +1,11 @@
+https://smlweb.cpsc.ucalgary.ca/start.html
+
+https://mdaines.github.io/grammophone/
+
+https://www.cs.princeton.edu/courses/archive/spring20/cos320/LL1/
+
+https://lab.brainonfire.net/CFG/remove-left-recursion.html
+
+https://web.stanford.edu/class/archive/cs/cs103/cs103.1156/tools/cfg/
+
+https://cyberzhg.github.io/toolbox/

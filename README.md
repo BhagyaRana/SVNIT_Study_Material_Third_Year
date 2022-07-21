@@ -15,7 +15,16 @@ This is Repository of the **Most Important** and **Valuable** _Lecture Notes_ an
 
 ## 4️⃣ Six Semester [NIT, Surat]
 
-+ 1 - Currently Studying
++ 1 - PPL {Principals of Programming Language}
++ 2 - Distributed Systems
++ 3 - System Software
++ 4 - Artificial Intelligence
++ 5 - Cryptography
++ 6 - NLP {Natural Language Processing}
++ 7 - LABS
++ 8 - TUTORIALS
++ 9 - END_SEMESTER_2022_PAPERS 
++ 10 - Semester_6_Syllabus.pdf
 
 ## ⭐ Contributing
 Pull requests are welcome from Junior of NIT, Surat.

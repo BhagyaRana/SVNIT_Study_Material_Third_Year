@@ -1,0 +1,10 @@
+#include <iostream>
+#define LIMIT 5
+using namespace std ;
+int main(){
+    // Does your lexical analyzer check for comments
+    int A , B ;
+    cin >> A >> B;
+    cout << A * B ; 
+    return 0;
+}

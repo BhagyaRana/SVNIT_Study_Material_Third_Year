@@ -1,0 +1,34 @@
+Even Roll-Number - U19CS012
+
+Q1.) LEX Program to Check 'for' Loop.
+
+Example : 
+
+VALID for Loops
+
+for(int i=0;i<n;i++)
+for(;;)
+for(;i<n;)
+for(int i=0;i<n;i++)
+
+INVALID For Loops
+
+for(int i=0;;i++)
+for(int i=0:i<n:i++)
+for((int i=0:i<n:i++))
+for(int i=0;i<n)
+
+FLOW : 
+for -> '(' -> {Empty/Intialization} -> ';' -> Expression [MUST] -> ';' -> Empty )
+
+RegEx for 'for' Loop
+
+
+
+
+
+
+Q2.) YACC Program to Evaluate PostFix Expression
+
+I/P - 67+
+O/P - 13

@@ -1,0 +1,20 @@
+Ami B Mehta TA2 SVNIT2:06 PM
+int a = b+c
+int a = b+4d
+
+Output 1 : 
+int -> keyword
+a -> Identifier
+= -> Operator
+b -> Identifier
++ -> Operator
+c -> Identifier
+Output 2 : 
+int -> keyword
+a -> Identifier
+= -> Operator
+b -> Identifier
++ -> Operator
+4d -> Not Valid Identifier
+
+{} -> Delimiter

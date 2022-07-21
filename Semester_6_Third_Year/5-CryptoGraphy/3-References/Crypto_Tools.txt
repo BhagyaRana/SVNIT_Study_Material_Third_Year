@@ -1,0 +1,11 @@
+1 - GCD Finder
+
+https://www.calculatorsoup.com/calculators/math/gcf-euclids-algorithm.php
+
+2 - Extended Euclid Full Table
+
+https://www.extendedeuclideanalgorithm.com/calculator.php
+
+3 - AES
+
+https://www.cryptool.org/en/cto/aes-step-by-step

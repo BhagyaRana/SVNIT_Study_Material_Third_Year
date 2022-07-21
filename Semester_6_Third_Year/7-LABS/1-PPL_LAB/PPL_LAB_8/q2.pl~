@@ -1,0 +1,5 @@
+max(X,Y,Z,Max):-
+    ( X > Y, X > Z, Max is X ,!);
+    ( Y > X , Y > Z,Max is Y,!);
+    Max is Z.
+    

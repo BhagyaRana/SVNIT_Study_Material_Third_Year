@@ -1,0 +1,5 @@
+Implement N queens problem using below algorithms in prolog.
+Compare the complexity of both algorithms.
+Which algorithm is best suited for implementing N queens problem and why?
+1. Breadth First Search
+2. Depth First Search

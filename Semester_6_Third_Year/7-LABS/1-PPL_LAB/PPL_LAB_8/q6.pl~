@@ -1,0 +1,6 @@
+is_square(S,S):-
+    write('Yes,  It  is  Square'),!.
+
+is_square(L,B):-
+    write("No,  It  is  not  Square  but  It's  a  Rectangle"),!.
+

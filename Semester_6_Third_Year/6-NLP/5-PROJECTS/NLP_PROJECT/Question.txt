@@ -1,0 +1,40 @@
+Question
+
+1.) KeyPhrases cannot be extracted using Which Library?
+
+PKE
+Pyttsx3 [R]
+KeyBERT
+RAKE
+
+2.) Which of Following Algorithm is Not used to Generate Distractors?
+
+Wordnet 
+ConceptNet
+Sense2vec
+PolyNet [R]
+
+3.) T5 Text to Text Transformer Model was Trained on Which Dataset?
+
+Quora Dataset
+SQuAD [R]
+Reddit Dataset
+TriviaQA
+
+4.) 
+Paraphrasing of Sentence is Done by Which Summarization?
+
+Extractive
+Abstractive [R]
+Both of Above 
+None of These
+
+5.) Which Graph Based Model is Used for Keyword Extraction in PKE?
+
+KeyBERT
+TopicRank
+MultiPartiteRank [R]
+YAKE
+
+
+

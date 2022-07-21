@@ -1,0 +1,8 @@
+int
+float
+return
+bhagya
+2345
+12.45
+"strconst"
+'fixed'

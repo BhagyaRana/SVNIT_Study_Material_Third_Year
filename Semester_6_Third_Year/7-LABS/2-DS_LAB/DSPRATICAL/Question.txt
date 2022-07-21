@@ -1,0 +1,6 @@
+Q1.) Implement RPC to Reverse a Number.
+
+Example : 
+
+Input : 12345
+Outout : 54321
